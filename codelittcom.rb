@@ -7,20 +7,21 @@ require 'sinatra/assetpack'
 
 class App < Sinatra::Base
   set :root, File.dirname(__FILE__)
+  Less.paths <<  "#{App.root}/app/css" 
+
   register Sinatra::AssetPack
 
-  assets {
+  assets do 
     serve '/images', from: 'app/images'    # Optional
 
     css :bootstrap, [
-      '/css/theme.css',
-      '/css/bootstrap-responsive.css'
+      '/css/theme.css'
     ]
 
     js_compression :uglify
 
     prebuild true
-  }
+  end
 
 	get '/' do 
 		erb :index
