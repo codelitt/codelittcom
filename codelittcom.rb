@@ -14,8 +14,13 @@ class App < Sinatra::Base
   assets do 
     serve '/images', from: 'app/images'    # Optional
 
+    js :bootstrap, '/js/main.js', [
+      '/js/bootstrap*.js'
+    ]
+
     css :bootstrap, [
-      '/css/theme.css'
+      '/css/theme.css',
+      '/css/responsive.css'
     ]
 
     js_compression :uglify
