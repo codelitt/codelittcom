@@ -10,9 +10,16 @@ class App < Sinatra::Base
   register Sinatra::AssetPack
 
   assets {
-    serve '/js',     from: 'app/js'        # Optional
-    serve '/css',    from: 'app/css'       # Optional
     serve '/images', from: 'app/images'    # Optional
+
+    css :bootstrap, [
+      '/css/theme.css',
+      '/css/bootstrap-responsive.css'
+    ]
+
+    js_compression :uglify
+
+    prebuild true
   }
 
 	get '/' do 
